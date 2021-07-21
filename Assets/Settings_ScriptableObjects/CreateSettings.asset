@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01833a41c17d4814ea80f69660f38619, type: 3}
+  m_Name: CreateSettings
+  m_EditorClassIdentifier: 
+  _gridSize: {x: 8, y: 9}
+  _colors:
+  - {r: 1, g: 0.9504018, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0.031772893, g: 0.9622642, b: 0.03641525, a: 1}
+  - {r: 0.03208439, g: 0.12822719, b: 0.9716981, a: 1}
+  - {r: 0.040850822, g: 0.9622642, b: 0.872334, a: 1}
+  _moveSpeed: 0.5
