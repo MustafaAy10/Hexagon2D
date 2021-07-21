@@ -16,7 +16,6 @@ namespace Hexagon2D.ExplosionControl
         [SerializeField] RotateSettings _rotateSettings;
         [SerializeField] ExplosionController _explosionController;
         [SerializeField] private SpriteRenderer _spriteRenderer;
-        [SerializeField] private HexSpawner _hexSpawner;
 
         private GridHex _gridHex;
         private IntersectManager _intersectManager;
@@ -90,15 +89,7 @@ namespace Hexagon2D.ExplosionControl
                 // Checking for explosion locally (around the _selectedIntersection point), there is no need to check all intersection points.  
                 if (_intersectManager.CheckExplosionLocal(_selectedIntersection.myIndex.x, _selectedIntersection.myIndex.y, ref _explosionList))
                 {
-                    // Debug.Log("[Select] _explosionList.Count: " + _explosionList.Count);
-                    Hexagon hex = _explosionList.FirstOrDefault(x => x is Bomb);    // if there is bomb in the list we should destroy it, we can't use it again in the next FillGrid method.
-                    if (hex is Bomb)
-                    {
-                        _explosionList.Remove(hex);
-                        _explosionList.Add(_hexSpawner.CreateHexagon(hex.Index, true));   // Creating new Hexagon instead of Bomb, we will use this hexagon on FillGrid method after explosion.
-                        Destroy(hex.gameObject);
-                    }
-                    else
+                    if(_explosionList.Count(x=> x is Bomb) == 0)
                         EventManager.Instance.InvokeCountDown();    // if there is no bomb in the explosionList, we can count down.
 
                     _explosionController.Explode(ref _explosionList);

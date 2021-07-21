@@ -28,6 +28,7 @@ namespace Hexagon2D.ExplosionControl
         [SerializeField] private ExplosionSettings _explosionSettings;
         [SerializeField] private CreateSettings _createSettings;
         [SerializeField] private CanvasController _canvasController;
+        [SerializeField] private HexSpawner _hexSpawner;
         [SerializeField] private Bomb _bombPrefab;
 
         public void Initialize(GridHex gridHex, PositionHandler positionHandler, IntersectManager intersectManager, Vector3 hexSize)
@@ -60,6 +61,8 @@ namespace Hexagon2D.ExplosionControl
             _explosionList = explosionList;
             _moveCountEnd = 0;
             _moveCountStart = 0;
+
+            CheckForBomb();  // If there are bombs in the explosion list, first we should eleminate them, we dont want use bombs again, right after the explosion.
 
             if (ScorePanel.score >= _lastBombScore)
             {
@@ -208,6 +211,21 @@ namespace Hexagon2D.ExplosionControl
         private void OnDestroy()
         {
             EventManager.Instance.OnGameOver -= Deactivate;
+        }
+
+        private void CheckForBomb()
+        {
+            // if there is bomb in the list we should destroy it, we can't use it again in the next FillGrid method.
+            for (int i = 0; i < _explosionList.Count; i++)
+            {
+                if (_explosionList[i] is Bomb)
+                {
+                    Hexagon hex = _explosionList[i];
+                    _explosionList.Remove(hex);
+                    _explosionList.Add(_hexSpawner.CreateHexagon(hex.Index, true));   // Creating new Hexagon instead of Bomb, we will use this hexagon on FillGrid method after explosion.
+                    Destroy(hex.gameObject);
+                }
+            }
         }
     }
 }

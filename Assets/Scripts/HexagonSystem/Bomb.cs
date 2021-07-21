@@ -14,7 +14,7 @@ namespace Hexagon2D.HexagonSystem
         public override void Initialize(int colorID, Vector2Int index)
         {
             base.Initialize(colorID, index);
-            _countDown = Random.Range(4, 6);
+            _countDown = Random.Range(7, 9);
             _countDownText.text = _countDown.ToString();
             EventManager.Instance.OnCountDown += CountDown;
             transform.GetChild(0).GetComponent<Canvas>().worldCamera = Camera.main;

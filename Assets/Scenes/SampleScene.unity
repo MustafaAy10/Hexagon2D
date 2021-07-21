@@ -327,10 +327,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5654cd2474ff5074bacd421bc84f20c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lastBombScore: 0
   _explosionList: []
   _explosionSettings: {fileID: 11400000, guid: 7e26c9c808527e64d981c60c645ee51c, type: 2}
   _createSettings: {fileID: 11400000, guid: 2140eb1828dcadf409ddd5c7feb91eef, type: 2}
   _canvasController: {fileID: 1594043498}
+  _hexSpawner: {fileID: 777267794}
   _bombPrefab: {fileID: 4239297976665904814, guid: 9bc6877761c6d9a449ec591b442d6347, type: 3}
 --- !u!4 &299899737
 Transform:
@@ -555,7 +557,6 @@ MonoBehaviour:
   _rotateSettings: {fileID: 11400000, guid: e613f7a18063c144fb4030256fd08a62, type: 2}
   _explosionController: {fileID: 299899736}
   _spriteRenderer: {fileID: 701315700}
-  _hexSpawner: {fileID: 777267794}
 --- !u!212 &701315700
 SpriteRenderer:
   m_ObjectHideFlags: 0
